@@ -1,13 +1,31 @@
-# Encapsulation :
+# Encapsulation : It is the way to control access on our data and methods ,in python nothing is private truly*/
 
 class Atm():
     def __init__(self):
-        self.__pin=1234
-        self.__balance=1000
+        self._pin=1234 # convention of  protected data member (single underscore)
+        self.__balance=1000 #convention of private data member (double underscore)
+        self.age=32  # Public Data member we can access from any object
         print(self)
-        # self.menu()
+        self.menu()
+
+ # We use property in python for encapsulation it makes our task very much easy  
+ # property is a class  under hood and it has four callbles in __init__
+ # obj.balance will call getter automatically
+ # obj.balance=321 it will call setter 
+ # del obj.balance will call delete function 
 
 
+    @property
+    def balance(self):
+        return self.__balance
+    
+    @balance.setter
+    def balance(self,bal):
+        if type(bal)==int:
+            self.__balance=bal
+            print("Balance Updated")
+        else:
+            print("Something is wrong")
     def menu(self):
         user_input=input("""
             How you like to proceed:
@@ -30,15 +48,15 @@ class Atm():
 
     def create_pin(self):
         input_pin=input("Enter Your PIN")
-        self.__pin=int(input_pin)
+        self._pin=int(input_pin)
 
         print("PIN Changed Succesfully")
-        print(type(self.__pin),self.__pin)
+        print(type(self._pin),self._pin)
         self.menu()
     
     def deposit_balance(self):
         check=int(input("Enter Your PIN to deposit"))
-        if check==self.__pin:
+        if check==self._pin:
             amount=input("Enter the Amount")
             self.__balance+=int(amount)
             print("Amount Added Succesfully",self.__balance)
@@ -49,7 +67,7 @@ class Atm():
     
     def withdraw(self):
         check=int(input("Enter Your PIN to withdraw"))
-        if check==self.__pin:
+        if check==self._pin:
             amount=int(input("Enter the Amount to withdraw"))
 
             if amount>self.__balance:
@@ -64,7 +82,7 @@ class Atm():
 
     def show_balance(self):
         check=int(input("Enter Your PIN to show balance"))
-        if check==self.__pin:
+        if check==self._pin:
             print("Amount :",self.__balance)
 
         self.menu()
@@ -74,7 +92,8 @@ class Atm():
 sbi=Atm()
 
 
-print(sbi.__balance)
+sbi.balance="kasie ho"
+print(sbi.balance)
 
 
 
