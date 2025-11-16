@@ -1,8 +1,11 @@
+# Encapsulation :
+
 class Atm():
     def __init__(self):
-        self.pin=1234
-        self.balance=1000
+        self.__pin=1234
+        self.__balance=1000
         print(self)
+        # self.menu()
 
 
     def menu(self):
@@ -27,18 +30,18 @@ class Atm():
 
     def create_pin(self):
         input_pin=input("Enter Your PIN")
-        self.pin=int(input_pin)
+        self.__pin=int(input_pin)
 
         print("PIN Changed Succesfully")
-        print(type(self.pin),self.pin)
+        print(type(self.__pin),self.__pin)
         self.menu()
     
     def deposit_balance(self):
         check=int(input("Enter Your PIN to deposit"))
-        if check==self.pin:
+        if check==self.__pin:
             amount=input("Enter the Amount")
-            self.balance+=int(amount)
-            print("Amount Added Succesfully",self.balance)
+            self.__balance+=int(amount)
+            print("Amount Added Succesfully",self.__balance)
         else:
             print("Invalid PIN")
 
@@ -46,14 +49,14 @@ class Atm():
     
     def withdraw(self):
         check=int(input("Enter Your PIN to withdraw"))
-        if check==self.pin:
+        if check==self.__pin:
             amount=int(input("Enter the Amount to withdraw"))
 
-            if amount>self.balance:
+            if amount>self.__balance:
                 print("Insufficient Balance")
             else:
-                self.balance-=amount
-                print("Amount withdrawn successfully",self.balance)
+                self.__balance-=amount
+                print("Amount withdrawn successfully",self.__balance)
         else:
             print("Invalid PIN")
 
@@ -61,8 +64,8 @@ class Atm():
 
     def show_balance(self):
         check=int(input("Enter Your PIN to show balance"))
-        if check==self.pin:
-            print("Amount :",self.balance)
+        if check==self.__pin:
+            print("Amount :",self.__balance)
 
         self.menu()
 
@@ -70,6 +73,9 @@ class Atm():
 
 sbi=Atm()
 
-print(sbi.balance)
+
+print(sbi.__balance)
+
+
 
 
